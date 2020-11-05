@@ -6,6 +6,7 @@ import { AddressInfo } from "net";
 import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
 import { createMission } from "./endpoints/createMission";
+import { getStudentsByMission } from "./endpoints/getStudentsByMission";
 
 dotenv.config();
 
@@ -31,6 +32,8 @@ app.put("/student", createStudent);
 app.put("/teacher", createTeacher);
 
 app.put('/mission', createMission)
+
+app.get('/mission/search', getStudentsByMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
