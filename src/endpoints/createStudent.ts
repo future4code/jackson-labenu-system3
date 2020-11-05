@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { inputData } from "../types/inputData";
-import { formatDateStr, formatDateToDB } from "../aux/handleDate"
+import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 import { insertStudent } from "../data/insertStudent";
 import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents";
 import { selectLast } from "../data/selectLast";
