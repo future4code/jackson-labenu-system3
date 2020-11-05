@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import { inputData } from "../types/inputData";
 import { formatDateStr, formatDateToDB } from "../aux/handleDate"
-import { insertStudent } from "../data/insertStudent";
-import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents";
+import { insertTeacher } from "../data/insertTeacher";
+import { selectNonUniqueTeachers } from "../data/selectNonUniqueTeachers";
 import { selectLast } from "../data/selectLast";
 
-export const createStudent = async (
+export const createTeacher = async (
   req: Request, res: Response
 ): Promise<void> => {
   try {
@@ -15,13 +15,13 @@ export const createStudent = async (
       throw new Error("Missing data for requested operation");
     }
 
-    const students = await selectNonUniqueStudents(id, email);
-    students.forEach(student => {
-      if(student.id === id){
+    const teachers = await selectNonUniqueTeachers(id, email);
+    teachers.forEach(teacher => {
+      if(teacher.id === id){
         res.statusCode = 406;
         throw new Error("'id' already registered");
       }
-      if(student.email === email){
+      if(teacher.email === email){
         res.statusCode = 406;
         throw new Error("'email' already registered");
       }
@@ -31,15 +31,15 @@ export const createStudent = async (
 
     data.birthdate = formatDateToDB(birthdate);
 
-    await insertStudent(data);
+    await insertTeacher(data);
 
-    const lastStudent = await selectLast("student_labenu_system");
+    const lastTeacher = await selectLast("teacher_labenu_system");
 
     res.status(201).send({
-      message: "Success creating student",
+      message: "Success creating teacher",
       student: {
-        ...lastStudent, 
-        birthdate: formatDateStr(lastStudent.birthdate)
+        ...lastTeacher, 
+        birthdate: formatDateStr(lastTeacher.birthdate)
       }
     });
   } catch (err) {

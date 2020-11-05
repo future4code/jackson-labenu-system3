@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createStudent } from "./endpoints/createStudent";
+import { createTeacher } from "./endpoints/createTeacher";
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.use(cors());
 // endpoints aqui
 
 app.put("/student", createStudent);
+
+app.put("/teacher", createTeacher);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
