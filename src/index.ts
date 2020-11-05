@@ -5,7 +5,11 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
+
+import { addStudenttoMission } from "./endpoints/addStudenttoMission ";
+
 import { createMission } from "./endpoints/createMission";
+
 
 dotenv.config();
 
@@ -30,7 +34,11 @@ app.put("/student", createStudent);
 
 app.put("/teacher", createTeacher);
 
+
+app.post("/student/mission", addStudenttoMission)
+
 app.put('/mission', createMission)
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
