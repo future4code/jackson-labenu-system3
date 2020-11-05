@@ -3,6 +3,7 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
+import { createStudent } from "./endpoints/createStudent";
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ app.use(cors());
 
 // endpoints aqui
 
-// app.put("/student", createStudent);
+app.put("/student", createStudent);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
