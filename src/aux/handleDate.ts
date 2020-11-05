@@ -4,8 +4,8 @@ export const formatDateToDB = (dateStr: string): string => {
 }
 
 export const formatDateStr = (date: Date): string => {
-  const day: number = date.getDate();
-  const month: number = date.getMonth();
-  const year: number = date.getFullYear();
+  const day: string = String(date.getDate()).padStart(2, '0');
+  const month: string = String(date.getMonth() + 1).padStart(2, '0');
+  const year: string = String(date.getFullYear()).padStart(2, '0');
   return `${day}/${month}/${year}`
 }
