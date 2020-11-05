@@ -5,8 +5,12 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
+
+import { addStudenttoMission } from "./endpoints/addStudenttoMission ";
+
 import { createMission } from "./endpoints/createMission";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
+
 
 dotenv.config();
 
@@ -30,6 +34,9 @@ app.use(cors());
 app.put("/student", createStudent);
 
 app.put("/teacher", createTeacher);
+
+
+app.post("/student/mission", addStudenttoMission)
 
 app.put('/mission', createMission)
 
