@@ -23,7 +23,7 @@ app.use(cors());
 
 // endpoints aqui
 
-
+// app.put("/student", createStudent);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
