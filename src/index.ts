@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
+import { createMission } from "./endpoints/createMission";
 
 dotenv.config();
 
@@ -28,6 +29,8 @@ app.use(cors());
 app.put("/student", createStudent);
 
 app.put("/teacher", createTeacher);
+
+app.put('/mission', createMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
