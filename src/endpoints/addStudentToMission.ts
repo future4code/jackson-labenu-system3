@@ -29,7 +29,7 @@ export const addStudentToMission = async(
             throw new Error ('Mission not found')
         }
 
-        if(mission.id === missionId){
+        if(student.mission_id === missionId){
             res.statusCode = 406
             throw new Error(`${student.name} already on ${mission.name}`)
         }
