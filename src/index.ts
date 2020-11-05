@@ -7,6 +7,11 @@ import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
 import { getStudentAge } from "./endpoints/getStudentAge";
 
+import { addStudenttoMission } from "./endpoints/addStudenttoMission ";
+
+import { createMission } from "./endpoints/createMission";
+
+
 dotenv.config();
 
 export const connection = knex({
@@ -31,6 +36,12 @@ app.put("/student", createStudent);
 app.put("/teacher", createTeacher);
 
 app.get("/student/age/:id", getStudentAge)
+
+app.post("/student/mission", addStudenttoMission)
+
+app.put('/mission', createMission)
+
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
