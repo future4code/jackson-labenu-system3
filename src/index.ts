@@ -9,6 +9,7 @@ import { createTeacher } from "./endpoints/createTeacher";
 import { addStudenttoMission } from "./endpoints/addStudenttoMission ";
 
 import { createMission } from "./endpoints/createMission";
+import { getStudentsByMission } from "./endpoints/getStudentsByMission";
 
 
 dotenv.config();
@@ -39,6 +40,7 @@ app.post("/student/mission", addStudenttoMission)
 
 app.put('/mission', createMission)
 
+app.get('/mission/search', getStudentsByMission)
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
