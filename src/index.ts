@@ -13,6 +13,7 @@ import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
+import { deleteStudent } from "./endpoints/deleteStudent";
 
 
 
@@ -51,6 +52,7 @@ app.get("/student/mission/search", getStudentsByMission)
 
 app.get("/teacher/mission/search", getTeachersByMission)
 
+app.delete("/student/delete/:id", deleteStudent)
 
 
 const server = app.listen(process.env.PORT || 3003, () => {

@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
-import { selectStudentAge } from "../data/selectStudentAge";
 import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents";
+import { removeStudent } from "../data/removeStudent";
 
-export const getStudentAge = async (
+export const deleteStudent = async (
     req: Request, res: Response
 ): Promise<any> => {
     try {
@@ -16,13 +16,9 @@ export const getStudentAge = async (
             throw new Error("'id' not registered");
         }
 
-        const studentBirthdate = (await selectStudentAge(id))[0].birthdate;
+        await removeStudent(id)
 
-        const date: Date = new Date(studentBirthdate)
-        const ageInMilisseconds: number = Date.now() - date.getTime();
-        const age: number = Math.floor(ageInMilisseconds / 1000 / 60 / 60 / 24 / 365);
-
-        res.status(200).send({ message: `${student.name}: ${age} years`});
+        res.status(200).send({ message: `Student was successfully removed.`});
         
     } catch (err) {
         res.status(400).send({ message: err.message || err.sqlMessage });
