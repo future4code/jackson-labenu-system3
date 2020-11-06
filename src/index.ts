@@ -8,6 +8,7 @@ import { createStudent } from "./endpoints/createStudent";
 import { addStudentToMission } from "./endpoints/addStudentToMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
+import { deleteStudent } from "./endpoints/deleteStudent";
 
 import { createTeacher } from "./endpoints/createTeacher";
 import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
@@ -39,6 +40,8 @@ app.post("/student/mission", addStudentToMission);
 app.get("/student/age/:id", getStudentAge);
 
 app.get("/student/mission/search", getStudentsByMission);
+
+app.delete("/student/delete/:id", deleteStudent)
 
 app.put("/teacher", createTeacher);
 
