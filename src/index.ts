@@ -5,9 +5,15 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { createStudent } from "./endpoints/createStudent";
 import { createTeacher } from "./endpoints/createTeacher";
+
 import { addStudentToMission } from "./endpoints/addStudentToMission";
 import { createMission } from "./endpoints/createMission";
 import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
+
+import { getStudentAge } from "./endpoints/getStudentAge";
+import { getStudentsByMission } from "./endpoints/getStudentsByMission";
+
+
 
 dotenv.config();
 
@@ -37,6 +43,12 @@ app.put('/mission', createMission)
 app.post("/student/mission", addStudentToMission)
 
 app.post("/teacher/mission", addTeacherToMission)
+
+app.get("/student/age/:id", getStudentAge)
+
+app.get('/mission/search', getStudentsByMission)
+
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
