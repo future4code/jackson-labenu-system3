@@ -9,7 +9,7 @@ export const removeStudentMission = async(
 ): Promise<void> => {
 
     try {
-        const {studentId, missionId} = req.body
+        const {studentId} = req.body
 
         const student: Student = (await selectStudents(studentId))[0]
 
@@ -17,25 +17,22 @@ export const removeStudentMission = async(
             res.statusCode = 404
             throw new Error ('Student not found')
         }
-        
-        const mission: Mission = (await selectMissions(missionId))[0]
 
-        if(!mission){
-            await updateStudentMission(studentId,missionId)
-            res.status(200).send({
-                message: 
-                        `${student.name} changed to mission ${mission}`
-            })
+        if(!student.missionId){
+            res.statusCode = 406;
+            throw new Error("Student not assigned to any mission")
         }
-        if(mission) {
-            res.statusCode = 404
-            throw new Error ('expected value null for "missionId" ')
-        }   
-       
+        
+        await updateStudentMission(studentId,null)
+        
+        const mission: Mission = (await selectMissions(student.missionId))[0]
+
+        res.status(200).send({
+            message: `${student.name} removed from mission ${mission.name}`
+        })
     } catch (err) {
         res.status(res.statusCode).send({
             message: err.message || err.sqlMessage
         })
-        
     }
 }

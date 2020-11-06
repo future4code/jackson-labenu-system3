@@ -7,7 +7,7 @@ import { createStudent } from "./endpoints/createStudent";
 import { addStudentToMission } from "./endpoints/addStudentToMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
-import { deleteStudent } from "./endpoints/deleteStudent";
+import { removeStudent } from "./endpoints/removeStudent";
 import { createTeacher } from "./endpoints/createTeacher";
 import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
@@ -39,7 +39,7 @@ app.get("/student/age/:id", getStudentAge);
 
 app.get("/student/mission/search", getStudentsByMission);
 
-app.delete("/student/delete/:id", deleteStudent)
+app.delete("/student/delete/:id", removeStudent);
 
 app.put("/teacher", createTeacher);
 
@@ -49,7 +49,7 @@ app.get("/teacher/mission/search", getTeachersByMission);
 
 app.put('/mission', createMission);
 
-app.put('/student/missionRemove', removeStudentMission);
+app.put('/mission/remove/student', removeStudentMission);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

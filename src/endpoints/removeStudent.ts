@@ -1,22 +1,22 @@
 import { Request, Response } from "express"
 import { selectStudents } from "../data/selectStudents";
-import { removeStudent } from "../data/removeStudent";
+import { deleteStudent } from "../data/deleteStudent";
+import { Student } from "../types/ReturnData";
 
-export const deleteStudent = async (
+export const removeStudent = async (
     req: Request, res: Response
-): Promise<any> => {
+): Promise<void> => {
     try {
-        const id = Number(req.params.id);
+        const id: number = Number(req.params.id);
 
-        const student = (await (selectStudents(id)))[0];
-        console.log(student)
+        const student: Student = (await (selectStudents(id)))[0];
 
         if(!student) {
             res.statusCode = 400;
             throw new Error("'id' not registered");
         }
 
-        await removeStudent(id)
+        await deleteStudent(id)
 
         res.status(200).send({ message: `Student was successfully removed.`});
         
