@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { Mission, Teacher } from "../types/ReturnData"
 import { selectMissions } from "../data/selectMissions"
 import { selectTeachers } from "../data/selectTeachers"
 import { updateTeacherMission } from "../data/updateTeacherMission"
@@ -13,16 +14,16 @@ export const addTeacherToMission = async(
 
         if(!teacherId || !missionId){
             throw new Error("Missing data for requested operation");
-          }
+        }
         
-        const teacher = (await selectTeachers(teacherId))[0]
+        const teacher: Teacher = (await selectTeachers(teacherId))[0]
 
         if(!teacher){
             res.statusCode = 404
             throw new Error ('Teacher not found')
         }
         
-        const mission = (await selectMissions(missionId))[0]
+        const mission: Mission = (await selectMissions(missionId))[0]
 
         if(!mission){
             res.statusCode = 404

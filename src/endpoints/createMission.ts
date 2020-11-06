@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
 import { Mission } from "../types/ReturnData";
 import { InputMission } from "../types/InputData";
-import { formatDateStr, formatDateToDB } from "../functions/handleDate"
-import { insertMission } from "../data/insertMission";
 import { selectMissions } from "../data/selectMissions";
+import { insertMission } from "../data/insertMission";
+import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 
 export const createMission = async (
   req: Request, res: Response

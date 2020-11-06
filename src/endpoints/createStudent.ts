@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
-import { InputStudent } from "../types/InputData";
 import { Student } from "../types/ReturnData";
-import { formatDateStr, formatDateToDB } from "../functions/handleDate"
-import { insertStudent } from "../data/insertStudent";
+import { InputStudent } from "../types/InputData";
 import { selectStudents } from "../data/selectStudents";
+import { insertStudent } from "../data/insertStudent";
+import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 
 export const createStudent = async (
   req: Request, res: Response

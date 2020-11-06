@@ -10,7 +10,7 @@ CREATE TABLE student_labenu_system(
 	id INT PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	email VARCHAR(50) UNIQUE NOT NULL,
-	birthdate VARCHAR(50) NOT NULL,
+	birthdate DATE NOT NULL,
 	mission_id INT,
 	FOREIGN KEY (mission_id) REFERENCES mission_labenu_system(id)
 );
@@ -19,7 +19,7 @@ CREATE TABLE teacher_labenu_system(
 	id INT PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
 	email VARCHAR(50) UNIQUE NOT NULL,
-	birthdate VARCHAR(50) NOT NULL,
+	birthdate DATE NOT NULL,
 	mission_id INT,
 	FOREIGN KEY (mission_id) REFERENCES mission_labenu_system(id)
 );
@@ -69,15 +69,16 @@ INSERT INTO student_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_i
 INSERT INTO student_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (4, 'Roberto', 'rob@gmail.com', '1986-01-29', 8);
 
 INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (1, 'Soter', 'soter@labenu', '1995-10-20', 11);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (2, 'João', 'joao@labenu', '1998-01-02', 2);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (3, 'Paulo', 'paula@labenu', '1996-09-21', 3);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (4, 'Amanda', 'amanda@labenu', '1990-02-01', 4);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (5, 'Darvas', 'darvas@labenu', '1997-08-22', 5);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (6, 'Severo', 'severo@labenu', '1995-03-12', 6);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (7, 'Caio', 'caio@labenu', '1995-07-23', 7);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (8, 'Chijo', 'chijo@labenu', '1995-04-11', 8);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (9, 'Lais', 'lais@labenu', '1995-06-24', 9);
-INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (10, 'Bruno', 'bruno@labenu', '1995-05-10', 10);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (2, 'João', 'joao@labenu', '1998-01-02', 6);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (3, 'Paula', 'paula@labenu', '1996-09-21', 10);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (4, 'Amanda', 'amanda@labenu', '1990-02-01', 7);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (5, 'Darvas', 'darvas@labenu', '1997-08-22', 9);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (6, 'Severo', 'severo@labenu', '1995-03-12', 11);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (7, 'Caio', 'caio@labenu', '1997-07-23', 10);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (8, 'Chijo', 'chijo@labenu', '1994-04-11', 9);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (9, 'Lais', 'lais@labenu', '1999-06-24', 11);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (10, 'Bruno', 'bruno@labenu', '1993-05-10', 8);
+INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (11, 'Mateus', 'mateus@labenu', '1992-05-25', 8);
 
 INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (1, 'Yoga');
 INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (2, 'Viajar');

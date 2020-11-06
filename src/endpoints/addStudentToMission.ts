@@ -1,9 +1,8 @@
 import { Request, Response } from "express"
-import { selectMissions } from "../data/selectMissions"
+import { Mission, Student } from "../types/ReturnData"
 import { selectStudents } from "../data/selectStudents"
+import { selectMissions } from "../data/selectMissions"
 import { updateStudentMission } from "../data/updateStudentMission"
-import { Mission } from "../types/ReturnData"
-
 
 export const addStudentToMission = async(
     req: Request, res: Response  
@@ -14,9 +13,9 @@ export const addStudentToMission = async(
 
         if(!studentId || !missionId){
             throw new Error("Missing data for requested operation");
-          }
+        }
         
-        const student = (await selectStudents(studentId))[0]
+        const student: Student = (await selectStudents(studentId))[0]
 
         if(!student){
             res.statusCode = 404

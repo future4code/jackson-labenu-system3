@@ -11,7 +11,6 @@ export const formatDateStr = (date: Date): string => {
 }
 
 export const getAge = (birthdate: Date): number => {
-  // const birthdate: Date = new Date(birthdateStr)
   const ageInMS: number = Date.now() - birthdate.getTime();
   return Math.floor(ageInMS / 1000 / 60 / 60 / 24 / 365);
 }
