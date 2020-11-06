@@ -3,18 +3,16 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
-
 import { createStudent } from "./endpoints/createStudent";
 import { addStudentToMission } from "./endpoints/addStudentToMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
 import { deleteStudent } from "./endpoints/deleteStudent";
-
 import { createTeacher } from "./endpoints/createTeacher";
 import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
-
 import { createMission } from "./endpoints/createMission";
+import { removeStudentMission } from "./endpoints/removeStudentMission";
 
 dotenv.config();
 
@@ -50,6 +48,8 @@ app.post("/teacher/mission", addTeacherToMission);
 app.get("/teacher/mission/search", getTeachersByMission);
 
 app.put('/mission', createMission);
+
+app.put('/student/missionRemove', removeStudentMission);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
