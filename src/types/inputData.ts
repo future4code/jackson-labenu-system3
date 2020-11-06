@@ -19,14 +19,3 @@ export type InputMission = {
   endDate: string,
   module: number | undefined
 }
-
-export type StudentsByMission = {
-  id: number,
-  name: string,
-  start_date: string,
-  end_date: string,
-  module: number,
-  email: string,
-  birthdate: string,
-  mission_id: number
-}
