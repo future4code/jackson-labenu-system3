@@ -9,7 +9,7 @@ export const removeStudentMission = async(
 ): Promise<void> => {
 
     try {
-        const {studentId} = req.body
+        const studentId: number = Number(req.params.id)
 
         const student: Student = (await selectStudents(studentId))[0]
 
@@ -23,9 +23,9 @@ export const removeStudentMission = async(
             throw new Error("Student not assigned to any mission")
         }
         
-        await updateStudentMission(studentId,null)
-        
         const mission: Mission = (await selectMissions(student.missionId))[0]
+        
+        await updateStudentMission(studentId,null)
 
         res.status(200).send({
             message: `${student.name} removed from mission ${mission.name}`
