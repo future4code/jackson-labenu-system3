@@ -1,30 +1,24 @@
 import { Request, Response } from "express"
-import { selectStudentAge } from "../data/selectStudentAge";
-import { selectNonUniqueStudents } from "../data/selectStudents";
+import { Student } from "../types/ReturnData";
+import { selectStudents } from "../data/selectStudents";
+import { getAge } from "../functions/handleDate";
 
 export const getStudentAge = async (
     req: Request, res: Response
-): Promise<any> => {
+): Promise<void> => {
     try {
-        const id = Number(req.params.id);
+        const id: number = Number(req.params.id);
 
-        const student = (await (selectNonUniqueStudents(id)))[0];
-        console.log(student)
+        const student: Student = (await (selectStudents(id)))[0];
 
         if(!student) {
-            res.statusCode = 400;
             throw new Error("'id' not registered");
         }
 
-        const studentBirthdate = (await selectStudentAge(id))[0].birthdate;
+        const age: number = getAge(student.birthdate);
 
-        const date: Date = new Date(studentBirthdate)
-        const ageInMilisseconds: number = Date.now() - date.getTime();
-        const age: number = Math.floor(ageInMilisseconds / 1000 / 60 / 60 / 24 / 365);
-
-        res.status(200).send({ message: `${student.name}: ${age} years`}); //ok
-        // res.status(200).send(age); // gerando erro
+        res.status(200).send({ message: `${student.name}: ${age} years old`});
     } catch (err) {
-        res.status(400).send({ message: err.message || err.sqlMessage });
+        res.status(res.statusCode).send({ message: err.message || err.sqlMessage });
     }
 }

@@ -33,8 +33,6 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-// endpoints aqui
-
 app.put("/student", createStudent);
 
 app.put("/teacher", createTeacher);
@@ -45,11 +43,11 @@ app.post("/student/mission", addStudentToMission);
 
 app.post("/teacher/mission", addTeacherToMission);
 
-// app.get("/student/age/:id", getStudentAge)
+app.get("/student/age/:id", getStudentAge);
 
-// app.get("/student/mission/search", getStudentsByMission)
+// app.get("/student/mission/search", getStudentsByMission);
 
-// app.get("/teacher/mission/search", getTeachersByMission)
+// app.get("/teacher/mission/search", getTeachersByMission);
 
 
 
