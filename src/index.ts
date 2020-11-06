@@ -3,16 +3,20 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
+
 import { createStudent } from "./endpoints/createStudent";
 import { addStudentToMission } from "./endpoints/addStudentToMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
-import { deleteStudent } from "./endpoints/deleteStudent";
+import { removeStudent } from "./endpoints/removeStudent";
+
 import { createTeacher } from "./endpoints/createTeacher";
 import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
+
 import { createMission } from "./endpoints/createMission";
 import { removeStudentMission } from "./endpoints/removeStudentMission";
+import { removeTeacherMission } from "./endpoints/removeTeacherMission";
 
 dotenv.config();
 
@@ -39,7 +43,7 @@ app.get("/student/age/:id", getStudentAge);
 
 app.get("/student/mission/search", getStudentsByMission);
 
-app.delete("/student/delete/:id", deleteStudent)
+app.delete("/student/delete/:id", removeStudent);
 
 app.put("/teacher", createTeacher);
 
@@ -49,7 +53,9 @@ app.get("/teacher/mission/search", getTeachersByMission);
 
 app.put('/mission', createMission);
 
-app.put('/student/missionRemove', removeStudentMission);
+app.put('/mission/remove/student/:id', removeStudentMission);
+
+app.put('/mission/remove/teacher/:id', removeTeacherMission);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

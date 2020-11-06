@@ -1,6 +1,6 @@
 import { connection } from "..";
 
-export const removeStudent = async (id: number): Promise<void> => {
+export const deleteStudent = async (id: number): Promise<void> => {
     await connection ("student_labenu_system")
       .where ('id', id)
       .del()
