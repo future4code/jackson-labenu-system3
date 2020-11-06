@@ -15,7 +15,7 @@ export const createTeacher = async (
       throw new Error("Missing data for requested operation");
     }
 
-    const teachers = await selectTeachers(id, email);
+    const teachers: Teacher[] = await selectTeachers(id, email);
     teachers.forEach(teacher => {
       if(teacher.id === id){
         res.statusCode = 406;

@@ -12,12 +12,12 @@ export type InputTeacher = {
   birthdate: string
 }
 
-export type inputMission = {
+export type InputMission = {
   id: number,
   name: string,
-  start_date: string,
-  end_date: string,
-  module: number
+  startDate: string,
+  endDate: string,
+  module: number | undefined
 }
 
 export type StudentsByMission = {

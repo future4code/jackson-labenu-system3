@@ -39,7 +39,7 @@ app.put("/student", createStudent);
 
 app.put("/teacher", createTeacher);
 
-// app.put('/mission', createMission)
+app.put('/mission', createMission);
 
 // app.post("/student/mission", addStudentToMission)
 

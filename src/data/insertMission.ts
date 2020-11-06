@@ -1,8 +1,14 @@
 import { connection } from "..";
-import { inputMission } from "../types/InputData";
+import { InputMission } from "../types/InputData";
 
-export const insertMission = async (data: inputMission): Promise<void> => {
-  const {id,name,start_date,end_date, module} = data;
+export const insertMission = async (data: InputMission): Promise<void> => {
+  const {id,name,startDate,endDate,module} = data;
   await connection ("mission_labenu_system")
-    .insert({id,name,start_date,end_date, module});
+    .insert({
+      id,
+      name,
+      start_date: startDate,
+      end_date: endDate,
+      module: module || 0
+    });
 }
