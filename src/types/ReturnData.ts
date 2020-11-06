@@ -20,4 +20,4 @@ export type Mission = {
   startDate: Date,
   endDate: Date,
   module: number
-}
+} 

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents";
+import { selectStudents } from "../data/selectStudents";
 import { removeStudent } from "../data/removeStudent";
 
 export const deleteStudent = async (
@@ -8,7 +8,7 @@ export const deleteStudent = async (
     try {
         const id = Number(req.params.id);
 
-        const student = (await (selectNonUniqueStudents(id)))[0];
+        const student = (await (selectStudents(id)))[0];
         console.log(student)
 
         if(!student) {
