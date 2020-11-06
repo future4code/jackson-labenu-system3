@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
-import { inputData } from "../types/inputData";
-import { formatDateStr, formatDateToDB } from "../functions/handleDate"
+import { Student } from "../types/ReturnData";
+import { InputStudent } from "../types/InputData";
+import { selectStudents } from "../data/selectStudents";
 import { insertStudent } from "../data/insertStudent";
-import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents";
-import { selectLast } from "../data/selectLast";
+import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 
 export const createStudent = async (
   req: Request, res: Response
@@ -15,7 +15,7 @@ export const createStudent = async (
       throw new Error("Missing data for requested operation");
     }
 
-    const students = await selectNonUniqueStudents(id, email);
+    const students: Student[] = await selectStudents(id, email);
     students.forEach(student => {
       if(student.id === id){
         res.statusCode = 406;
@@ -27,19 +27,21 @@ export const createStudent = async (
       }
     });
     
-    const data: inputData = {id,name,email,birthdate}
+    const data: InputStudent = {id,name,email,birthdate}
 
     data.birthdate = formatDateToDB(birthdate);
 
     await insertStudent(data);
 
-    const lastStudent = await selectLast("student_labenu_system");
+    const createdStudent: Student = (await selectStudents(id))[0];
 
     res.status(201).send({
       message: "Success creating student",
       student: {
-        ...lastStudent, 
-        birthdate: formatDateStr(lastStudent.birthdate)
+        id: createdStudent.id,
+        name: createdStudent.name,
+        email: createdStudent.email,
+        birthdate: formatDateStr(createdStudent.birthdate)
       }
     });
   } catch (err) {

@@ -1,24 +1,26 @@
 import { Request, Response } from "express"
-import { inputMission } from "../types/inputData";
-import { formatDateStr, formatDateToDB } from "../functions/handleDate"
+import { Mission } from "../types/ReturnData";
+import { InputMission } from "../types/InputData";
+import { selectMissions } from "../data/selectMissions";
 import { insertMission } from "../data/insertMission";
-import { selectLastMission } from "../data/selectLastMission";
-import { selectNonUniqueMission } from "../data/selectNonUniqueMission";
+import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 
 export const createMission = async (
   req: Request, res: Response
 ): Promise<void> => {
   try {
+    const {id,name,startDate,endDate, module} = req.body;
 
-    console.log(req.body)
-    const {id,name,start_date,end_date, module} = req.body;
-
-    if(!id || !name || !start_date || !end_date || !module){
+    if(!id || !name || !startDate || !endDate){
       throw new Error("Missing data for requested operation");
     }
-    console.log(req.body)
 
-    const missions = await selectNonUniqueMission(id, name);
+    if(module && module > 7){
+      res.statusCode = 406;
+      throw new Error("Invalid module value");
+    }
+
+    const missions: Mission[] = await selectMissions(id, name);
     missions.forEach(mission => {
       if(mission.id === id){
         res.statusCode = 406;
@@ -30,24 +32,25 @@ export const createMission = async (
       }
     });
     
-    const data: inputMission = {id,name,start_date,end_date, module}
+    const data: InputMission = {id,name,startDate,endDate,module}
 
-    data.start_date = formatDateToDB(start_date);
-    data.end_date = formatDateToDB(end_date);
+    data.startDate = formatDateToDB(startDate);
+    data.endDate = formatDateToDB(endDate);
 
     await insertMission(data);
 
-    const lastMission = await selectLastMission("mission_labenu_system");
+    const createdMission: Mission = (await selectMissions(id))[0];
 
     res.status(201).send({
       message: "Success creating mission",
       mission: {
-        ...lastMission, 
-        startDate: formatDateStr(lastMission.start_date),
-        endDate: formatDateStr(lastMission.end_date),
+        ...createdMission, 
+        startDate: formatDateStr(createdMission.startDate),
+        endDate: formatDateStr(createdMission.endDate),
+        module: createdMission.module || "Classes haven't started yet"
       }
     });
   } catch (err) {
-    res.status(400).send({message: err.message || err.sqlMessage});
+    res.status(res.statusCode).send({message: err.message || err.sqlMessage});
   }
 }

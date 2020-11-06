@@ -1,27 +1,29 @@
 import { Request, Response } from 'express';
+import { Student } from '../types/ReturnData';
 import { selectAllMissions } from '../data/selectAllMissions';
 import { selectAllStudentsForMission } from '../data/selectAllStudentsForMission';
 import { formatDateStr } from '../functions/handleDate';
 
-export const getStudentsByMission = async (req: Request, res: Response) => {
+export const getStudentsByMission = async (
+  req: Request, res: Response
+): Promise<void> => {
   try {
-
     const name = req.query.name as string
     const missions = (await selectAllMissions()).map(mission => (mission.name))
 
     if(!missions.includes(name)){
-      throw new Error('Você deve inserir um valor válido de turmas já existentes')
+      throw new Error('Please enter an existing mission')
     }
 
-    const students = await selectAllStudentsForMission(name)
+    const students: Student[] = await selectAllStudentsForMission(name)
 
     if(!students.length) {
       res.statusCode = 404;
-      throw new Error('Nenhum(a) aluno(a) encontrado(a)')
+      throw new Error('No students found')
     }
 
     res.status(200).send({
-      message: `Estudantes da turma..${name}`,
+      message: `Students of mission..${name}`,
       students: students.map(student=>(
         {...student, birthdate: formatDateStr(student.birthdate)}
       ))

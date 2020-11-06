@@ -3,19 +3,18 @@ import knex from "knex";
 import cors from "cors";
 import dotenv from "dotenv";
 import { AddressInfo } from "net";
+
 import { createStudent } from "./endpoints/createStudent";
-import { createTeacher } from "./endpoints/createTeacher";
-
 import { addStudentToMission } from "./endpoints/addStudentToMission";
-import { createMission } from "./endpoints/createMission";
-import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
-
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
-import { getTeachersByMission } from "./endpoints/getTeachersByMission";
 import { deleteStudent } from "./endpoints/deleteStudent";
 
+import { createTeacher } from "./endpoints/createTeacher";
+import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
+import { getTeachersByMission } from "./endpoints/getTeachersByMission";
 
+import { createMission } from "./endpoints/createMission";
 
 dotenv.config();
 
@@ -34,26 +33,23 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-// endpoints aqui
-
 app.put("/student", createStudent);
 
-app.put("/teacher", createTeacher);
+app.post("/student/mission", addStudentToMission);
 
-app.put('/mission', createMission)
+app.get("/student/age/:id", getStudentAge);
 
-app.post("/student/mission", addStudentToMission)
-
-app.post("/teacher/mission", addTeacherToMission)
-
-app.get("/student/age/:id", getStudentAge)
-
-app.get("/student/mission/search", getStudentsByMission)
-
-app.get("/teacher/mission/search", getTeachersByMission)
+app.get("/student/mission/search", getStudentsByMission);
 
 app.delete("/student/delete/:id", deleteStudent)
 
+app.put("/teacher", createTeacher);
+
+app.post("/teacher/mission", addTeacherToMission);
+
+app.get("/teacher/mission/search", getTeachersByMission);
+
+app.put('/mission', createMission);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

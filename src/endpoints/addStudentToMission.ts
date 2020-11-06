@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
-import { selectNonUniqueMission } from "../data/selectNonUniqueMission"
-import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents"
+import { Mission, Student } from "../types/ReturnData"
+import { selectStudents } from "../data/selectStudents"
+import { selectMissions } from "../data/selectMissions"
 import { updateStudentMission } from "../data/updateStudentMission"
-
 
 export const addStudentToMission = async(
     req: Request, res: Response  
@@ -13,23 +13,23 @@ export const addStudentToMission = async(
 
         if(!studentId || !missionId){
             throw new Error("Missing data for requested operation");
-          }
+        }
         
-        const student = (await selectNonUniqueStudents(studentId))[0]
+        const student: Student = (await selectStudents(studentId))[0]
 
         if(!student){
             res.statusCode = 404
             throw new Error ('Student not found')
         }
         
-        const mission = (await selectNonUniqueMission(missionId))[0]
+        const mission: Mission = (await selectMissions(missionId))[0]
 
         if(!mission){
             res.statusCode = 404
             throw new Error ('Mission not found')
         }
 
-        if(student.mission_id === missionId){
+        if(student.missionId === missionId){
             res.statusCode = 406
             throw new Error(`${student.name} already on ${mission.name}`)
         }
@@ -38,7 +38,7 @@ export const addStudentToMission = async(
             
         res.status(200).send({
             message: 
-                student.mission_id 
+                student.missionId 
                     ? `${student.name} changed to ${mission.name}`
                     : `${student.name} added to ${mission.name}`
         })

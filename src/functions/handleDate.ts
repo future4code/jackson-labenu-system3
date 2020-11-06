@@ -9,3 +9,8 @@ export const formatDateStr = (date: Date): string => {
   const year: string = String(date.getFullYear()).padStart(2, '0');
   return `${day}/${month}/${year}`
 }
+
+export const getAge = (birthdate: Date): number => {
+  const ageInMS: number = Date.now() - birthdate.getTime();
+  return Math.floor(ageInMS / 1000 / 60 / 60 / 24 / 365);
+}
