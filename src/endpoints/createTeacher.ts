@@ -38,7 +38,9 @@ export const createTeacher = async (
     res.status(201).send({
       message: "Success creating teacher",
       teacher: {
-        ...createdTeacher, 
+        id: createdTeacher.id,
+        name: createdTeacher.name,
+        email: createdTeacher.email,
         birthdate: formatDateStr(createdTeacher.birthdate)
       }
     });

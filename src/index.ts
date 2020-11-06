@@ -41,9 +41,9 @@ app.put("/teacher", createTeacher);
 
 app.put('/mission', createMission);
 
-// app.post("/student/mission", addStudentToMission)
+app.post("/student/mission", addStudentToMission);
 
-// app.post("/teacher/mission", addTeacherToMission)
+app.post("/teacher/mission", addTeacherToMission);
 
 // app.get("/student/age/:id", getStudentAge)
 

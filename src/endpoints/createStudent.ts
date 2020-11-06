@@ -38,7 +38,9 @@ export const createStudent = async (
     res.status(201).send({
       message: "Success creating student",
       student: {
-        ...createdStudent, 
+        id: createdStudent.id,
+        name: createdStudent.name,
+        email: createdStudent.email,
         birthdate: formatDateStr(createdStudent.birthdate)
       }
     });
