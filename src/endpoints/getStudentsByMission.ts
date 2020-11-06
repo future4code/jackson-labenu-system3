@@ -28,7 +28,7 @@ export const getStudentsByMission = async (req: Request, res: Response) => {
     });
 
     }catch(error) {
-    res.status(400).send(
+    res.status(res.statusCode).send(
       {
         message: error.message || error.sqlMessege
       }
