@@ -33,7 +33,7 @@ export const createStudent = async (
 
     await insertStudent(data);
 
-    const createdStudent = (await selectStudents(id))[0];
+    const createdStudent: Student = (await selectStudents(id))[0];
 
     res.status(201).send({
       message: "Success creating student",

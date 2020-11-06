@@ -1,10 +1,11 @@
 import { connection } from ".."
+import { Teacher } from "../types/ReturnData";
 
-export const selectNonUniqueTeachers = async (
+export const selectTeachers = async (
   id: number, email: string | null = null
-): Promise<any[]> => {
+): Promise<Teacher[]> => {
   return await connection("teacher_labenu_system")
-    .select("*")
+    .select("id", "name", "email", "birthdate")
     .where("id", id)
     .orWhere("email", email);
 }
