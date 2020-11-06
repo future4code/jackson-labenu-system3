@@ -12,6 +12,7 @@ import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
 
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
+import { getTeachersByMission } from "./endpoints/getTeachersByMission";
 
 
 
@@ -46,7 +47,9 @@ app.post("/teacher/mission", addTeacherToMission)
 
 app.get("/student/age/:id", getStudentAge)
 
-app.get('/mission/search', getStudentsByMission)
+app.get("/student/mission/search", getStudentsByMission)
+
+app.get("/teacher/mission/search", getTeachersByMission)
 
 
 
