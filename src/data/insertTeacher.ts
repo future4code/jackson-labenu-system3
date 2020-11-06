@@ -1,5 +1,5 @@
 import { connection } from "..";
-import { inputData } from "../types/inputData";
+import { inputData } from "../types/InputData";
 
 export const insertTeacher = async (data: inputData): Promise<void> => {
   const {id,name,email,birthdate} = data;

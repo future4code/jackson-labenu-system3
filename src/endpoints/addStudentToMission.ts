@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { selectNonUniqueMission } from "../data/selectNonUniqueMission"
-import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents"
+import { selectNonUniqueStudents } from "../data/selectStudents"
 import { updateStudentMission } from "../data/updateStudentMission"
 
 

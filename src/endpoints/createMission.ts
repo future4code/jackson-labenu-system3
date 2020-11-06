@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { inputMission } from "../types/inputData";
+import { inputMission } from "../types/InputData";
 import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 import { insertMission } from "../data/insertMission";
 import { selectLastMission } from "../data/selectLastMission";

@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { inputData } from "../types/inputData";
+import { inputData } from "../types/InputData";
 import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 import { insertTeacher } from "../data/insertTeacher";
 import { selectNonUniqueTeachers } from "../data/selectNonUniqueTeachers";

@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { selectStudentAge } from "../data/selectStudentAge";
-import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents";
+import { selectNonUniqueStudents } from "../data/selectStudents";
 
 export const getStudentAge = async (
     req: Request, res: Response

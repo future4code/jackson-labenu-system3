@@ -1,7 +1,7 @@
 import { connection } from "..";
-import { inputData } from "../types/inputData";
+import { InputStudent } from "../types/InputData";
 
-export const insertStudent = async (data: inputData): Promise<void> => {
+export const insertStudent = async (data: InputStudent): Promise<void> => {
   const {id,name,email,birthdate} = data;
   await connection ("student_labenu_system")
     .insert({id,name,email,birthdate});
