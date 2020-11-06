@@ -36,7 +36,9 @@ Esse é um projeto em grupo, segue o nome da galera:
 
 - _Endpoint_ adicionar um missão seu método é o  **PUT** validando todas as entradas, módulos de 1 à 7, *id* e *name* não repetidos, seu retorno é a turma criada;
 
-- _Endpoint_ de remover aluno de uma turma passando um body com *id* e *missionId* usando método **PUT** validando se existe os *id's* passados no body, o valor de *missionId* precisa ser null se não retorna um erro;
+- _Endpoint_ de remover aluno de uma turma usando método **PUT** 
+
+- _Endpoint_ de remover professor de uma turma com método **PUT** ;
 
 ### O que não funciona:
 
