@@ -1,7 +1,7 @@
 import { connection } from ".."
 
 export const selectNonUniqueMission = async (
-  id: number, name: string
+  id: number, name: string | null = null
 ): Promise<any[]> => {
   return await connection("mission_labenu_system")
     .select("*")

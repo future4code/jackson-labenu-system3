@@ -1,25 +1,25 @@
 import { Request, Response } from "express"
 import { selectNonUniqueMission } from "../data/selectNonUniqueMission"
-import { selectNonUniqueTeachers } from "../data/selectNonUniqueTeachers"
-import { updateTeacherMission } from "../data/updateTeacherMission"
+import { selectNonUniqueStudents } from "../data/selectNonUniqueStudents"
+import { updateStudentMission } from "../data/updateStudentMission"
 
 
-export const addTeacherToMission = async(
+export const addStudentToMission = async(
     req: Request, res: Response  
 ): Promise<void> => {
 
     try {
-        const {teacherId, missionId} = req.body
+        const {studentId, missionId} = req.body
 
-        if(!teacherId || !missionId){
+        if(!studentId || !missionId){
             throw new Error("Missing data for requested operation");
           }
         
-        const teacher = (await selectNonUniqueTeachers(teacherId))[0]
+        const student = (await selectNonUniqueStudents(studentId))[0]
 
-        if(!teacher){
+        if(!student){
             res.statusCode = 404
-            throw new Error ('Teacher not found')
+            throw new Error ('Student not found')
         }
         
         const mission = (await selectNonUniqueMission(missionId))[0]
@@ -29,18 +29,18 @@ export const addTeacherToMission = async(
             throw new Error ('Mission not found')
         }
 
-        if(teacher.mission_id === missionId){
+        if(student.mission_id === missionId){
             res.statusCode = 406
-            throw new Error(`${teacher.name} already on ${mission.name}`)
+            throw new Error(`${student.name} already on ${mission.name}`)
         }
         
-        await updateTeacherMission(teacherId,missionId)
+        await updateStudentMission(studentId,missionId)
             
         res.status(200).send({
             message: 
-                teacher.mission_id 
-                    ? `${teacher.name} changed to ${mission.name}`
-                    : `${teacher.name} added to ${mission.name}`
+                student.mission_id 
+                    ? `${student.name} changed to ${mission.name}`
+                    : `${student.name} added to ${mission.name}`
         })
     } catch (err) {
         res.status(res.statusCode).send({

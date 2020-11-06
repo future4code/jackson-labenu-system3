@@ -43,6 +43,6 @@ export const createTeacher = async (
       }
     });
   } catch (err) {
-    res.status(400).send({message: err.message || err.sqlMessage});
+    res.status(res.statusCode).send({message: err.message || err.sqlMessage});
   }
 }
