@@ -26,7 +26,7 @@ CREATE TABLE teacher_labenu_system(
 
 CREATE TABLE hobby_labenu_system(
 	id INT PRIMARY KEY,
-	hobby VARCHAR(50) NOT NULL
+	name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE student_hobby_labenu_system(
@@ -40,7 +40,7 @@ CREATE TABLE student_hobby_labenu_system(
 
 CREATE TABLE specialty_labenu_system(
 	id INT PRIMARY KEY,
-	specialty VARCHAR(50) NOT NULL
+	name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE teacher_specialty_labenu_system(
@@ -80,45 +80,45 @@ INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_i
 INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (10, 'Bruno', 'bruno@labenu', '1993-05-10', 8);
 INSERT INTO teacher_labenu_system (`id`, `name`,`email`, `birthdate`, `mission_id`) VALUES (11, 'Mateus', 'mateus@labenu', '1992-05-25', 8);
 
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (1, 'Yoga');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (2, 'Viajar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (3, 'Passear');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (4, 'Meditar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (5, 'Tocar um instrumento');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (6, 'Cantar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (7, 'Ouvir música');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (8, 'Correr');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (9, 'Praticar esportes');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (10, 'Pescar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (11, 'Trabalho voluntário');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (12, 'Dançar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (13, 'Ir ao cinema');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (14, 'Ir ao teatro');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (15, 'Cuidar de animais');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (16, 'Assistir série');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (17, 'Fotografar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (18, 'Jogar videogame');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (19, 'Jogar cartas');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (20, 'Jogar xadrez');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (21, 'Artes marciais');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (22, 'Academia');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (23, 'Cozinhar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (24, 'Ler');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (25, 'Costurar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (26, 'Pintar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (27, 'Desenhar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (28, 'Jardinagem');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (29, 'Sinuca');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (30, 'Pedalar');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (31, 'Escrever');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (32, 'Decoração');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (33, 'Skate');
-INSERT INTO hobby_labenu_system (`id`, `hobby`) VALUES (34, 'Patins');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (1, 'Yoga');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (2, 'Viajar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (3, 'Passear');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (4, 'Meditar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (5, 'Tocar um instrumento');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (6, 'Cantar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (7, 'Ouvir música');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (8, 'Correr');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (9, 'Praticar esportes');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (10, 'Pescar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (11, 'Trabalho voluntário');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (12, 'Dançar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (13, 'Ir ao cinema');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (14, 'Ir ao teatro');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (15, 'Cuidar de animais');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (16, 'Assistir série');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (17, 'Fotografar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (18, 'Jogar videogame');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (19, 'Jogar cartas');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (20, 'Jogar xadrez');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (21, 'Artes marciais');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (22, 'Academia');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (23, 'Cozinhar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (24, 'Ler');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (25, 'Costurar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (26, 'Pintar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (27, 'Desenhar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (28, 'Jardinagem');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (29, 'Sinuca');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (30, 'Pedalar');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (31, 'Escrever');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (32, 'Decoração');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (33, 'Skate');
+INSERT INTO hobby_labenu_system (`id`, `name`) VALUES (34, 'Patins');
 
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (1, 'React');
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (2, 'Redux');
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (3, 'CSS');
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (4, 'Testes');
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (5, 'Typescript');
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (6, 'POO');
-INSERT INTO specialty_labenu_system (`id`, `specialty`) VALUES (7, 'Backend');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (1, 'React');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (2, 'Redux');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (3, 'CSS');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (4, 'Testes');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (5, 'Typescript');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (6, 'POO');
+INSERT INTO specialty_labenu_system (`id`, `name`) VALUES (7, 'Backend');

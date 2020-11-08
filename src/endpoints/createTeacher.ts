@@ -1,15 +1,24 @@
 import { Request, Response } from "express"
+
+import { Teacher, Specialty } from "../types/ReturnData";
 import { InputTeacher } from "../types/InputData";
-import { Teacher } from "../types/ReturnData";
+
 import { selectTeachers } from "../data/selectTeachers";
+import { selectAllSpecialties } from "../data/selectAllSpecialties";
 import { insertTeacher } from "../data/insertTeacher";
+import { insertTeacherSpecialty } from "../data/insertTeacherSpecialty";
+import { selectTeacherSpecialties } from "../data/selectTeacherSpecialties";
+
 import { formatDateStr, formatDateToDB } from "../functions/handleDate"
 
 export const createTeacher = async (
   req: Request, res: Response
 ): Promise<void> => {
+
+  res.statusCode = 400;
+
   try {
-    const {id,name,email,birthdate} = req.body;
+    const {id,name,email,birthdate, specialties} = req.body;
 
     if(!id || !name || !email || !birthdate){
       throw new Error("Missing data for requested operation");
@@ -27,13 +36,34 @@ export const createTeacher = async (
       }
     });
     
-    const data: InputTeacher = {id,name,email,birthdate}
+    const data: InputTeacher = {id,name,email,birthdate, specialties}
+
+    const specialtiesList: Specialty[] = await selectAllSpecialties();
+    
+    if(data.specialties.length > 0){
+      data.specialties.forEach(specialty => {
+        if(!specialtiesList.map(item=>item.name).includes(specialty)){
+          res.statusCode = 406;
+          throw new Error(`Specilty '${specialty}' not listed`)
+        }
+      });
+    }
 
     data.birthdate = formatDateToDB(birthdate);
 
     await insertTeacher(data);
 
+    data.specialties.forEach(async specialty => {
+      const specialtyId: number = specialtiesList
+        .filter(item => item.name === specialty)
+        .map(item=>item.id)[0];
+
+      await insertTeacherSpecialty(id, specialtyId)
+    })
+
     const createdTeacher: Teacher = (await selectTeachers(id))[0];
+
+    const teacherSpecialties: string[] = await selectTeacherSpecialties(id);
 
     res.status(201).send({
       message: "Success creating teacher",
@@ -41,7 +71,8 @@ export const createTeacher = async (
         id: createdTeacher.id,
         name: createdTeacher.name,
         email: createdTeacher.email,
-        birthdate: formatDateStr(createdTeacher.birthdate)
+        birthdate: formatDateStr(createdTeacher.birthdate),
+        specialties: teacherSpecialties
       }
     });
   } catch (err) {
