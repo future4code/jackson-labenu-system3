@@ -21,3 +21,13 @@ export type Mission = {
   endDate: Date,
   module: number
 } 
+
+export type Hobby = {
+  id: number,
+  name: string
+}
+
+export type Specialty = {
+  id: number,
+  name: string
+}

@@ -2,14 +2,16 @@ export type InputStudent = {
   id: number,
   name: string,
   email: string,
-  birthdate: string
+  birthdate: string,
+  hobbies: string[]
 }
 
 export type InputTeacher = {
   id: number,
   name: string,
   email: string,
-  birthdate: string
+  birthdate: string,
+  specialties: string[]
 }
 
 export type InputMission = {
