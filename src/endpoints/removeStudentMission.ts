@@ -9,7 +9,7 @@ export const removeStudentMission = async(
 ): Promise<void> => {
 
     try {
-        const {studentId} = req.body
+        const studentId: number = Number(req.params.id)
 
         const student: Student = (await selectStudents(studentId))[0]
 

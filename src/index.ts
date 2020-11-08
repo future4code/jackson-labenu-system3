@@ -49,7 +49,9 @@ app.get("/teacher/mission/search", getTeachersByMission);
 
 app.put('/mission', createMission);
 
-app.put('/mission/remove/student', removeStudentMission);
+app.put('/mission/remove/student/:id', removeStudentMission);
+
+app.put('/mission/remove/teacher/:id', removeStudentMission);
 
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {

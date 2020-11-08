@@ -9,7 +9,7 @@ export const createStudent = async (
   req: Request, res: Response
 ): Promise<void> => {
   try {
-    const {id,name,email,birthdate} = req.body;
+    const {id,name,email,birthdate, hobbies} = req.body;
 
     if(!id || !name || !email || !birthdate){
       throw new Error("Missing data for requested operation");
