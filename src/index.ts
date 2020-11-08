@@ -5,13 +5,13 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 
 import { createStudent } from "./endpoints/createStudent";
-import { addStudentToMission } from "./endpoints/addStudentToMission";
+import { changeStudentMission } from "./endpoints/changeStudentMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
 import { removeStudent } from "./endpoints/removeStudent";
 
 import { createTeacher } from "./endpoints/createTeacher";
-import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
+import { changeTeacherMission } from "./endpoints/changeTeacherMission";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
 
 import { createMission } from "./endpoints/createMission";
@@ -37,7 +37,7 @@ app.use(cors());
 
 app.put("/student", createStudent);
 
-app.post("/student/mission", addStudentToMission);
+app.post("/student/mission", changeStudentMission);
 
 app.get("/student/age/:id", getStudentAge);
 
@@ -47,7 +47,7 @@ app.delete("/student/delete/:id", removeStudent);
 
 app.put("/teacher", createTeacher);
 
-app.post("/teacher/mission", addTeacherToMission);
+app.post("/teacher/mission", changeTeacherMission);
 
 app.get("/teacher/mission/search", getTeachersByMission);
 

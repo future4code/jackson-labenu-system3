@@ -4,7 +4,7 @@ import { selectStudents } from "../data/selectStudents"
 import { selectMissions } from "../data/selectMissions"
 import { updateStudentMission } from "../data/updateStudentMission"
 
-export const addStudentToMission = async(
+export const changeStudentMission = async(
     req: Request, res: Response  
 ): Promise<void> => {
 
