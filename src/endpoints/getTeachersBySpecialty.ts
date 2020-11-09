@@ -2,12 +2,11 @@ import { Request, Response } from 'express';
 
 import { Teacher } from '../types/ReturnData';
 
-import { selectAllMissions } from '../data/selectAllMissions';
-import { selectAllTeachersForMission } from '../data/selectAllTeachersForMission';
-
 import { formatDateStr } from '../functions/handleDate';
+import { selectAllSpecialties } from '../data/selectAllSpecialties';
+import { selectAllTeachersBySpecialty } from '../data/selectAllTeachersBySpecialty';
 
-export const getTeachersByMission = async (
+export const getTeachersBySpecialty = async (
   req: Request, res: Response
 ): Promise<void> => {
 
@@ -15,26 +14,25 @@ export const getTeachersByMission = async (
 
   try {
     const name = req.query.name as string
-    const missions = (await selectAllMissions()).map(mission => (mission.name))
+    const specialties = (await selectAllSpecialties()).map(specialty => (specialty.name))
 
-    if(!missions.includes(name)){
-      throw new Error('Please enter an existing mission')
+    if(!specialties.includes(name)){
+      throw new Error('Please enter a listed specialty')
     }
 
-    const teachers: Teacher[] = await selectAllTeachersForMission(name)
+    const teachers: Teacher[] = await selectAllTeachersBySpecialty(name)
 
     if(!teachers.length) {
       res.statusCode = 404;
-      throw new Error('No teachers found')
+      throw new Error('No teachers found');
     }
 
     res.status(200).send({
-      message: `Teachers of mission..${name}`,
+      specialty: `${name}`,
       teachers: teachers.map(teacher=>(
         {...teacher, birthdate: formatDateStr(teacher.birthdate)}
       ))
     });
-
     } catch(err) {
     res.status(res.statusCode).send(
       {

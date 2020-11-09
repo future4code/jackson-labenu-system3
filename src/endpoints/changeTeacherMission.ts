@@ -5,7 +5,7 @@ import { selectTeachers } from "../data/selectTeachers"
 import { updateTeacherMission } from "../data/updateTeacherMission"
 
 
-export const addTeacherToMission = async(
+export const changeTeacherMission = async(
     req: Request, res: Response  
 ): Promise<void> => {
 
@@ -32,7 +32,7 @@ export const addTeacherToMission = async(
 
         if(teacher.missionId === missionId){
             res.statusCode = 406
-            throw new Error(`${teacher.name} already on ${mission.name}`)
+            throw new Error(`Teacher' ${teacher.name}' already on mission '${mission.name}'`)
         }
         
         await updateTeacherMission(teacherId,missionId)
@@ -40,8 +40,8 @@ export const addTeacherToMission = async(
         res.status(200).send({
             message: 
                 teacher.missionId 
-                    ? `${teacher.name} changed to ${mission.name}`
-                    : `${teacher.name} added to ${mission.name}`
+                    ? `Teacher' ${teacher.name}' changed to mission: '${mission.name}'`
+                    : `Teacher' ${teacher.name}' added to mission: '${mission.name}'`
         })
     } catch (err) {
         res.status(res.statusCode).send({

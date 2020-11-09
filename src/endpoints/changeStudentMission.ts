@@ -4,9 +4,11 @@ import { selectStudents } from "../data/selectStudents"
 import { selectMissions } from "../data/selectMissions"
 import { updateStudentMission } from "../data/updateStudentMission"
 
-export const addStudentToMission = async(
+export const changeStudentMission = async(
     req: Request, res: Response  
 ): Promise<void> => {
+
+    res.statusCode = 400;
 
     try {
         const {studentId, missionId} = req.body
@@ -31,7 +33,7 @@ export const addStudentToMission = async(
 
         if(student.missionId === missionId){
             res.statusCode = 406
-            throw new Error(`${student.name} already on ${mission.name}`)
+            throw new Error(`Student '${student.name}' already on mission '${mission.name}'`)
         }
         
         await updateStudentMission(studentId,missionId)
@@ -39,13 +41,12 @@ export const addStudentToMission = async(
         res.status(200).send({
             message: 
                 student.missionId 
-                    ? `${student.name} changed to ${mission.name}`
-                    : `${student.name} added to ${mission.name}`
+                    ? `Student '${student.name}' changed to mission: '${mission.name}'`
+                    : `Student '${student.name}' added to mission: '${mission.name}'`
         })
     } catch (err) {
         res.status(res.statusCode).send({
             message: err.message || err.sqlMessage
         })
-        
     }
 }

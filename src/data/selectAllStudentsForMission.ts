@@ -1,7 +1,8 @@
 import { connection } from "..";
+import { Student } from "../types/ReturnData";
 
 export const selectAllStudentsForMission
-    = async (name: string): Promise<any[]> => {
+    = async (name: string): Promise<Student[]> => {
 
     const result = await connection.raw(`
         SELECT st.id AS id, st.name AS name, email, birthdate

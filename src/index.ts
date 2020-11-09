@@ -5,14 +5,18 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 
 import { createStudent } from "./endpoints/createStudent";
-import { addStudentToMission } from "./endpoints/addStudentToMission";
+import { changeStudentMission } from "./endpoints/changeStudentMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
+import { getStudentsByHobby } from "./endpoints/getStudentsByHobby";
 import { removeStudent } from "./endpoints/removeStudent";
+import { changeStudentHobbies } from "./endpoints/changeStudentHobbies";
 
 import { createTeacher } from "./endpoints/createTeacher";
-import { addTeacherToMission } from "./endpoints/addTeachertoMIssion";
+import { changeTeacherMission } from "./endpoints/changeTeacherMission";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
+import { getTeachersBySpecialty } from "./endpoints/getTeachersBySpecialty";
+import { changeTeacherSpecialty } from "./endpoints/changeTeacherSpecialty";
 
 import { createMission } from "./endpoints/createMission";
 import { removeStudentMission } from "./endpoints/removeStudentMission";
@@ -37,19 +41,27 @@ app.use(cors());
 
 app.put("/student", createStudent);
 
-app.post("/student/mission", addStudentToMission);
+app.post("/student/mission", changeStudentMission);
 
 app.get("/student/age/:id", getStudentAge);
 
 app.get("/student/mission/search", getStudentsByMission);
 
+app.get("/student/hobby/search", getStudentsByHobby);
+
 app.delete("/student/delete/:id", removeStudent);
+
+app.post("/student/:id?/hobby", changeStudentHobbies);
 
 app.put("/teacher", createTeacher);
 
-app.post("/teacher/mission", addTeacherToMission);
+app.post("/teacher/mission", changeTeacherMission);
 
 app.get("/teacher/mission/search", getTeachersByMission);
+
+app.get("/teacher/specialty/search", getTeachersBySpecialty);
+
+app.post("/teacher/:id?/specialty", changeTeacherSpecialty);
 
 app.put('/mission', createMission);
 

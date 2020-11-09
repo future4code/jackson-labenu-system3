@@ -2,12 +2,11 @@ import { Request, Response } from 'express';
 
 import { Student } from '../types/ReturnData';
 
-import { selectAllMissions } from '../data/selectAllMissions';
-import { selectAllStudentsForMission } from '../data/selectAllStudentsForMission';
-
 import { formatDateStr } from '../functions/handleDate';
+import { selectAllHobbies } from '../data/selectAllHobbies';
+import { selectAllStudentsByHobby } from '../data/selectAllStudentsByHobby';
 
-export const getStudentsByMission = async (
+export const getStudentsByHobby = async (
   req: Request, res: Response
 ): Promise<void> => {
 
@@ -15,13 +14,13 @@ export const getStudentsByMission = async (
 
   try {
     const name = req.query.name as string
-    const missions = (await selectAllMissions()).map(mission => (mission.name))
+    const hobbies = (await selectAllHobbies()).map(hobby => (hobby.name))
 
-    if(!missions.includes(name)){
-      throw new Error('Please enter an existing mission')
+    if(!hobbies.includes(name)){
+      throw new Error('Please enter a listed hobby')
     }
 
-    const students: Student[] = await selectAllStudentsForMission(name)
+    const students: Student[] = await selectAllStudentsByHobby(name)
 
     if(!students.length) {
       res.statusCode = 404;
@@ -29,7 +28,7 @@ export const getStudentsByMission = async (
     }
 
     res.status(200).send({
-      message: `Students of mission..${name}`,
+      hobby: `${name}`,
       students: students.map(student=>(
         {...student, birthdate: formatDateStr(student.birthdate)}
       ))

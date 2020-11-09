@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { selectStudents } from "../data/selectStudents";
 import { deleteStudent } from "../data/deleteStudent";
 import { Student } from "../types/ReturnData";
+import { deleteStudentHobbiesRelation } from "../data/deleteStudentHobbiesRelation";
 
 export const removeStudent = async (
     req: Request, res: Response
@@ -12,15 +13,17 @@ export const removeStudent = async (
         const student: Student = (await (selectStudents(id)))[0];
 
         if(!student) {
-            res.statusCode = 400;
-            throw new Error("'id' not registered");
+            res.statusCode = 404;
+            throw new Error("Student not found");
         }
 
-        await deleteStudent(id)
+        await deleteStudentHobbiesRelation(id);
+
+        await deleteStudent(id);
 
         res.status(200).send({ message: `Student was successfully removed.`});
         
     } catch (err) {
-        res.status(400).send({ message: err.message || err.sqlMessage });
+        res.status(res.statusCode).send({ message: err.message || err.sqlMessage });
     }
 }
