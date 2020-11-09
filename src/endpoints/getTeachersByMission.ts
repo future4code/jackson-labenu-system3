@@ -1,12 +1,19 @@
 import { Request, Response } from 'express';
+
 import { Teacher } from '../types/ReturnData';
+
 import { selectAllMissions } from '../data/selectAllMissions';
 import { selectAllTeachersForMission } from '../data/selectAllTeachersForMission';
+
 import { formatDateStr } from '../functions/handleDate';
 
-export const getTeachersByMission = async (req: Request, res: Response) => {
-  try {
+export const getTeachersByMission = async (
+  req: Request, res: Response
+): Promise<void> => {
 
+  res.statusCode = 400;
+
+  try {
     const name = req.query.name as string
     const missions = (await selectAllMissions()).map(mission => (mission.name))
 
@@ -28,10 +35,10 @@ export const getTeachersByMission = async (req: Request, res: Response) => {
       ))
     });
 
-    }catch(error) {
+    } catch(err) {
     res.status(res.statusCode).send(
       {
-        message: error.message || error.sqlMessege
+        message: err.message || err.sqlMessege
       }
     )
   }

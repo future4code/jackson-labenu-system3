@@ -40,7 +40,7 @@ export const createStudent = async (
 
     const hobbiesList: Hobby[] = await selectAllHobbies();
 
-    if(data.hobbies.length > 0){
+    if(data.hobbies.length){
       data.hobbies.forEach(hobby => {
         if(!hobbiesList.map(item=>item.name).includes(hobby)){
           res.statusCode = 406;
@@ -61,18 +61,14 @@ export const createStudent = async (
       await insertStudentHobby(id, hobbyId);
     });
 
-    const createdStudent: Student = (await selectStudents(id))[0];
+    const student: Student = (await selectStudents(id))[0];
     
-    const studentHobbies: string[] = await selectStudentHobbies(id);
+    student.hobbies = (await selectStudentHobbies(id)).map(item=>item.name);
 
     res.status(201).send({
       message: "Success creating student",
       student: {
-        id: createdStudent.id,
-        name: createdStudent.name,
-        email: createdStudent.email,
-        birthdate: formatDateStr(createdStudent.birthdate),
-        hobbies: studentHobbies
+        ...student, birthdate: formatDateStr(student.birthdate)
       }
     });
   } catch (err) {

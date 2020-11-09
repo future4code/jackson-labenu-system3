@@ -3,6 +3,7 @@ export type Student = {
   name: string,
   email: string,
   birthdate: Date,
+  hobbies: string[],
   missionId: number
 }
 
@@ -11,6 +12,7 @@ export type Teacher = {
   name: string,
   email: string,
   birthdate: Date,
+  specialties: string[],
   missionId: number
 }
 

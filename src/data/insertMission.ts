@@ -9,6 +9,6 @@ export const insertMission = async (data: InputMission): Promise<void> => {
       name,
       start_date: startDate,
       end_date: endDate,
-      module: module || 0
+      module: module || null
     });
 }

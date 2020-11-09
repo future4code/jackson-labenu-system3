@@ -3,7 +3,7 @@ CREATE TABLE mission_labenu_system(
 	name VARCHAR(40) NOT NULL,
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL,
-	module INT NOT NULL
+	module INT
 );
 
 CREATE TABLE student_labenu_system(

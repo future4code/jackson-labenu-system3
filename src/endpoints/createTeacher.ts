@@ -61,18 +61,14 @@ export const createTeacher = async (
       await insertTeacherSpecialty(id, specialtyId)
     })
 
-    const createdTeacher: Teacher = (await selectTeachers(id))[0];
+    const teacher: Teacher = (await selectTeachers(id))[0];
 
-    const teacherSpecialties: string[] = await selectTeacherSpecialties(id);
+    teacher.specialties = await selectTeacherSpecialties(id);
 
     res.status(201).send({
       message: "Success creating teacher",
       teacher: {
-        id: createdTeacher.id,
-        name: createdTeacher.name,
-        email: createdTeacher.email,
-        birthdate: formatDateStr(createdTeacher.birthdate),
-        specialties: teacherSpecialties
+        id, name, email, birthdate: formatDateStr(teacher.birthdate), specialties
       }
     });
   } catch (err) {
