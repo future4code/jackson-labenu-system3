@@ -8,12 +8,14 @@ import { createStudent } from "./endpoints/createStudent";
 import { changeStudentMission } from "./endpoints/changeStudentMission";
 import { getStudentAge } from "./endpoints/getStudentAge";
 import { getStudentsByMission } from "./endpoints/getStudentsByMission";
+import { getStudentsByHobby } from "./endpoints/getStudentsByHobby";
 import { removeStudent } from "./endpoints/removeStudent";
 import { changeStudentHobbies } from "./endpoints/changeStudentHobbies";
 
 import { createTeacher } from "./endpoints/createTeacher";
 import { changeTeacherMission } from "./endpoints/changeTeacherMission";
 import { getTeachersByMission } from "./endpoints/getTeachersByMission";
+import { getTeachersBySpecialty } from "./endpoints/getTeachersBySpecialty";
 import { changeTeacherSpecialty } from "./endpoints/changeTeacherSpecialty";
 
 import { createMission } from "./endpoints/createMission";
@@ -45,6 +47,8 @@ app.get("/student/age/:id", getStudentAge);
 
 app.get("/student/mission/search", getStudentsByMission);
 
+app.get("/student/hobby/search", getStudentsByHobby);
+
 app.delete("/student/delete/:id", removeStudent);
 
 app.post("/student/:id?/hobby", changeStudentHobbies);
@@ -54,6 +58,8 @@ app.put("/teacher", createTeacher);
 app.post("/teacher/mission", changeTeacherMission);
 
 app.get("/teacher/mission/search", getTeachersByMission);
+
+app.get("/teacher/specialty/search", getTeachersBySpecialty);
 
 app.post("/teacher/:id?/specialty", changeTeacherSpecialty);
 
