@@ -63,7 +63,8 @@ export const createTeacher = async (
 
     const teacher: Teacher = (await selectTeachers(id))[0];
 
-    teacher.specialties = await selectTeacherSpecialties(id);
+    teacher.specialties = 
+      (await selectTeacherSpecialties(id)).map(item=>item.name);
 
     res.status(201).send({
       message: "Success creating teacher",
